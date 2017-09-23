@@ -1,0 +1,9 @@
+br\com\alosilla\automanager\util\GenericRepository.class
+br\com\alosilla\automanager\model\Member.class
+br\com\alosilla\automanager\data\MemberListProducer.class
+br\com\alosilla\automanager\model\InteressadoService.class
+br\com\alosilla\automanager\util\Resources.class
+br\com\alosilla\automanager\model\InteressadoRepository.class
+br\com\alosilla\automanager\service\MemberRegistration.class
+br\com\alosilla\automanager\data\MemberRepository.class
+br\com\alosilla\automanager\model\Interessado.class
