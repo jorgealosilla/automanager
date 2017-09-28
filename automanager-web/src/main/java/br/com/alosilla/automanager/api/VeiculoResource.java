@@ -17,8 +17,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -35,6 +33,8 @@ public class VeiculoResource {
     private VeiculoRepository repository;
     @Inject
     private VeiculoDto.RepresentationBuilder representationBuilder;
+    @Inject
+    private FipeResourceService fipeResourceService;
 
     @POST
     public Response save(VeiculoDto veiculoDto) {
@@ -66,16 +66,7 @@ public class VeiculoResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("marcas")
     public List<Marca> findMarcas() {
-//        WebTarget target = ClientBuilder.newClient().target(URI.create("https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas"));
-//        Response response = target.request().get();
-//        List<Marca> marcas = response.readEntity(GenericType<List<Marca.class>>);
-
-        GenericType<List<Marca>> marcaType = new GenericType<List<Marca>>() {
-        };
-        List<Marca> marcas = ClientBuilder.newClient()
-                .target(URI.create("https://fipe-parallelum.rhcloud.com/api/v1/carros/marcas"))
-                .request().get(marcaType);
-        return marcas;
+        return fipeResourceService.findMarcas();
     }
 
     @PUT
@@ -92,7 +83,7 @@ public class VeiculoResource {
         if (veiculo == null) {
             return Response.status(Status.NOT_FOUND).build();
         }
-        service.remove(veiculo);
+        service.remove(id);
         return Response.noContent().build();
     }
 }

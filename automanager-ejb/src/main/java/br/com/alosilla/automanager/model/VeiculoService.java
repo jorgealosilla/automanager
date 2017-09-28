@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 public class VeiculoService extends AbstractService<Veiculo> {
 
     public VeiculoService() {
+        super(Veiculo.class);
     }
-    
+
 }

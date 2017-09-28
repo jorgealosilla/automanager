@@ -1,14 +1,14 @@
 package br.com.alosilla.automanager.util;
 
 import java.util.List;
+import javax.inject.Inject;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class AbstractRepository<T extends AbstractEntityId> {
 
-    @PersistenceContext
+    @Inject
     protected EntityManager em;
 
     protected Class<T> entityClass;
