@@ -10,16 +10,19 @@ public class GenericRepository<T> {
     @Inject
     private EntityManager em;
 
-    private final T entity;
+    private final Class<T> entityClass;
 
-    public GenericRepository(T entity) {
-        this.entity = entity;
+    public GenericRepository(Class<T> entity) {
+        this.entityClass = entity;
     }
 
-    public List<T> find() {
+    public List<T> findAll() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entity.getClass()));
+        cq.select(cq.from(entityClass.getClass()));
         return em.createQuery(cq).getResultList();
     }
 
+    public T findById(Object id) {
+        return em.find(entityClass, id);
+    }
 }

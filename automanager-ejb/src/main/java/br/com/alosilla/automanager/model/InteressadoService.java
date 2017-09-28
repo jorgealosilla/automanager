@@ -1,19 +1,9 @@
 package br.com.alosilla.automanager.model;
 
+import br.com.alosilla.automanager.util.AbstractService;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 @Stateless
-public class InteressadoService {
+public class InteressadoService extends AbstractService<Interessado>{
 
-    @Inject
-    private EntityManager em;
-
-    public InteressadoService() {
-    }
-
-    public Interessado persist(final Interessado interessado) {
-        return em.merge(interessado);
-    }
 }

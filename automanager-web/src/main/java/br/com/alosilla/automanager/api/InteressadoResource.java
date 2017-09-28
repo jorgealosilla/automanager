@@ -41,7 +41,7 @@ public class InteressadoResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Interessado> findAll() {
-        return repository.find();
+        return repository.findAll();
     }
     
     @GET

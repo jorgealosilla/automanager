@@ -1,6 +1,6 @@
 package br.com.alosilla.automanager.model;
 
-import java.io.Serializable;
+import br.com.alosilla.automanager.util.AbstractEntityId;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity(name = "Interessado")
 @Table(name = "INTERESSADOS")
-public class Interessado implements Serializable {
+public class Interessado implements AbstractEntityId<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
