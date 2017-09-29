@@ -1,0 +1,41 @@
+<div class="main" style="background-image: url('images/default.jpg')">
+
+    <!--    Change the image source '/images/default.jpg' with your favourite image.     -->
+
+    <div class="cover black" data-color="black"></div>
+
+    <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
+
+    <div class="container">
+        <h1 class="logo">
+            Auto Manager
+        </h1>
+        <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
+
+        <div class="content">
+            <h4 class="motto">Gerencie os gastos com seu automóvel e saiba quanto ele realmente custa.</h4>
+            <div class="subscribe">
+                <h5 class="info-text">
+                    Gostaria de saber mais sobre este projeto?.
+                </h5>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-4 col-sm6-6 col-sm-offset-2 ">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                <input ng-model="vm.interessado.email" type="email" class="form-control transparent" placeholder="Seu e-mail aqui...">
+                            </div>
+                            <button type="submit" ng-click="vm.salvar();" class="btn btn-danger btn-fill">Junte-se a nós</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            Made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>. Free download <a href="http://www.creative-tim.com/product/coming-sssoon-page">here.</a>
+        </div>
+    </div>
+</div>
