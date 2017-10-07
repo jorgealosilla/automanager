@@ -5,12 +5,16 @@ import br.com.alosilla.automanager.util.AbstractEntityId;
 import java.time.Year;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "VEICULOS")
 public class Veiculo implements AbstractEntityId<Long> {
 
     @Id
@@ -30,6 +34,10 @@ public class Veiculo implements AbstractEntityId<Long> {
 
     @Column(name = "ANO")
     private Year ano;
+
+    @Column(name = "TIPO_COMBUSTIVEL")
+    @Enumerated(EnumType.STRING)
+    private TipoCombustivel tipoCombustivel;
 
     @Column(name = "PLACA")
     private String placa;
@@ -78,6 +86,14 @@ public class Veiculo implements AbstractEntityId<Long> {
         this.ano = ano;
     }
 
+    public TipoCombustivel getTipoCombustivel() {
+        return tipoCombustivel;
+    }
+
+    private void setTipoCombustivel(TipoCombustivel tipoCombustivel) {
+        this.tipoCombustivel = tipoCombustivel;
+    }
+    
     public String getPlaca() {
         return placa;
     }
@@ -92,6 +108,38 @@ public class Veiculo implements AbstractEntityId<Long> {
 
     private void setApolice(String apolice) {
         this.apolice = apolice;
+    }
+
+    public enum TipoCombustivel {
+        GASOLINA("G", "Gasolina", "Gasolina"),
+        ETANOL("E", "Etanol", "Etanol"),
+        DIESEL("D", "Diesel", "Diesel"),
+        GLP("P", "GPL", "Gás Liquefeito de Petróleo"),
+        GNV("V", "GNV", "Gás Natural Veicular"),
+        ELETRICO("L", "Elétrico", "Elétrico"),
+        FLEX("F", "Flex", "Flex");
+
+        private final String sigla;
+        private final String nome;
+        private final String descricao;
+
+        TipoCombustivel(String sigla, String nome, String descricao) {
+            this.sigla = sigla;
+            this.nome = nome;
+            this.descricao = descricao;
+        }
+
+        public String getSigla() {
+            return sigla;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        public String getDescricao() {
+            return descricao;
+        }
     }
 
     public static class Builder extends AbstractBuilder<Veiculo, Builder> {
@@ -125,6 +173,11 @@ public class Veiculo implements AbstractEntityId<Long> {
 
         public Builder ano(final Year ano) {
             entity.setAno(ano);
+            return this;
+        }
+
+        public Builder tipoCombustível(final TipoCombustivel tipoCombustivel) {
+            entity.setTipoCombustivel(tipoCombustivel);
             return this;
         }
 

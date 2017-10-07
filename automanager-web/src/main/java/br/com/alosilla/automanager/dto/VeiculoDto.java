@@ -2,6 +2,7 @@ package br.com.alosilla.automanager.dto;
 
 import br.com.alosilla.automanager.api.Api;
 import br.com.alosilla.automanager.model.Veiculo;
+import br.com.alosilla.automanager.model.Veiculo.TipoCombustivel;
 import br.com.alosilla.automanager.util.AbstractRepresentationBuilder;
 import br.com.alosilla.automanager.util.CollectionsBuilder;
 import java.net.URI;
@@ -22,6 +23,7 @@ public class VeiculoDto {
     private String marca;
     private String modelo;
     private int ano;
+    private TipoCombustivel tipoCombustivel;
     private String placa;
     private String apolice;
     private Map<String, URI> links;
@@ -73,6 +75,14 @@ public class VeiculoDto {
 
     private void setAno(int ano) {
         this.ano = ano;
+    }
+
+    public TipoCombustivel getTipoCombustivel() {
+        return tipoCombustivel;
+    }
+
+    private void setTipoCombustivel(TipoCombustivel tipoCombustivel) {
+        this.tipoCombustivel = tipoCombustivel;
     }
 
     public String getPlaca() {
@@ -139,6 +149,11 @@ public class VeiculoDto {
             return this;
         }
 
+        public Builder tipoCombustivel(TipoCombustivel tipoCombustivel) {
+            entityDto.setTipoCombustivel(tipoCombustivel);
+            return this;
+        }
+
         public Builder placa(String placa) {
             entityDto.setPlaca(placa);
             return this;
@@ -176,6 +191,7 @@ public class VeiculoDto {
                     .marca(dto.getMarca())
                     .modelo(dto.getModelo())
                     .ano(Year.of(dto.getAno()))
+                    .tipoCombustível(dto.getTipoCombustivel())
                     .placa(dto.getPlaca())
                     .apolice(dto.getApolice())
                     .build();
@@ -188,16 +204,17 @@ public class VeiculoDto {
         }
 
         @Override
-        public VeiculoDto toRepresentation(Veiculo categoria) {
+        public VeiculoDto toRepresentation(Veiculo veiculo) {
             return builder()
-                    .id(categoria.getId())
-                    .nome(categoria.getNome())
-                    .marca(categoria.getMarca())
-                    .modelo(categoria.getModelo())
-                    .ano(categoria.getAno().getValue())
-                    .placa(categoria.getPlaca())
-                    .apolice(categoria.getApolice())
-                    .links(getLinks(categoria))
+                    .id(veiculo.getId())
+                    .nome(veiculo.getNome())
+                    .marca(veiculo.getMarca())
+                    .modelo(veiculo.getModelo())
+                    .ano(veiculo.getAno().getValue())
+                    .tipoCombustivel(veiculo.getTipoCombustivel())
+                    .placa(veiculo.getPlaca())
+                    .apolice(veiculo.getApolice())
+                    .links(getLinks(veiculo))
                     .build();
         }
 
