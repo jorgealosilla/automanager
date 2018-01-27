@@ -1,9 +1,12 @@
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\util\GenericService.java
+E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\model\Abastecimento.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\util\AbstractService.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\util\AbstractEntityId.java
+E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\model\AbastecimentoService.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\util\AbstractBuilder.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\util\AbstractRepository.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\util\Resources.java
+E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\model\AbastecimentoRepository.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\model\VeiculoRepository.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\model\InteressadoService.java
 E:\BackUp Jorge\Estudo\projetos\CursoBetha\automanager\automanager-ejb\src\main\java\br\com\alosilla\automanager\model\Marca.java

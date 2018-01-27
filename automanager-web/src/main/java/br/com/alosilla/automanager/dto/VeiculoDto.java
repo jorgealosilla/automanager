@@ -2,7 +2,9 @@ package br.com.alosilla.automanager.dto;
 
 import br.com.alosilla.automanager.api.Api;
 import br.com.alosilla.automanager.model.Veiculo;
-import br.com.alosilla.automanager.model.Veiculo.TipoCombustivel;
+import br.com.alosilla.automanager.model.Veiculo.TipoAbastecimento;
+import br.com.alosilla.automanager.model.Veiculo.UnidadeCombustivel;
+import br.com.alosilla.automanager.model.Veiculo.UnidadeDistancia;
 import br.com.alosilla.automanager.util.AbstractRepresentationBuilder;
 import br.com.alosilla.automanager.util.CollectionsBuilder;
 import java.net.URI;
@@ -10,33 +12,30 @@ import java.time.Year;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class VeiculoDto {
 
     private Long id;
-    @NotNull
     private String nome;
     private String marca;
     private String modelo;
     private int ano;
-    private TipoCombustivel tipoCombustivel;
+    private boolean emUso;
+    private TipoAbastecimento tipoAbastecimento;
+    private UnidadeCombustivel unidadeCombustivel;
+    private UnidadeDistancia unidadeDistancia;
     private String placa;
     private String apolice;
     private Map<String, URI> links;
 
-//    public VeiculoDto(Long id, String nome, String marca, String modelo, Year ano, String placa, String apolice) {
-//        this.id = id;
-//        this.nome = nome;
-//        this.marca = marca;
-//        this.modelo = modelo;
-//        this.ano = ano;
-//        this.placa = placa;
-//        this.apolice = apolice;
-//    }
     public Long getId() {
         return id;
     }
@@ -77,12 +76,36 @@ public class VeiculoDto {
         this.ano = ano;
     }
 
-    public TipoCombustivel getTipoCombustivel() {
-        return tipoCombustivel;
+    public boolean isEmUso() {
+        return emUso;
     }
 
-    private void setTipoCombustivel(TipoCombustivel tipoCombustivel) {
-        this.tipoCombustivel = tipoCombustivel;
+    private void setEmUso(boolean emUso) {
+        this.emUso = emUso;
+    }
+
+    public TipoAbastecimento getTipoAbastecimento() {
+        return tipoAbastecimento;
+    }
+
+    private void setTipoAbastecimento(TipoAbastecimento tipoAbastecimento) {
+        this.tipoAbastecimento = tipoAbastecimento;
+    }
+
+    public UnidadeCombustivel getUnidadeCombustivel() {
+        return unidadeCombustivel;
+    }
+
+    private void setUnidadeCombustivel(UnidadeCombustivel unidadeCombustivel) {
+        this.unidadeCombustivel = unidadeCombustivel;
+    }
+
+    public UnidadeDistancia getUnidadeDistancia() {
+        return unidadeDistancia;
+    }
+
+    private void setUnidadeDistancia(UnidadeDistancia unidadeDistancia) {
+        this.unidadeDistancia = unidadeDistancia;
     }
 
     public String getPlaca() {
@@ -111,13 +134,6 @@ public class VeiculoDto {
 
     public static class Builder {
 
-//        private Long id;
-//        private String nome;
-//        private String marca;
-//        private String modelo;
-//        private Year ano;
-//        private String placa;
-//        private String apolice;
         private VeiculoDto entityDto;
 
         private Builder() {
@@ -149,8 +165,23 @@ public class VeiculoDto {
             return this;
         }
 
-        public Builder tipoCombustivel(TipoCombustivel tipoCombustivel) {
-            entityDto.setTipoCombustivel(tipoCombustivel);
+        public Builder emUso(boolean emUso) {
+            entityDto.setEmUso(emUso);
+            return this;
+        }
+
+        public Builder tipoAbastecimento(TipoAbastecimento tipoAbastecimento) {
+            entityDto.setTipoAbastecimento(tipoAbastecimento);
+            return this;
+        }
+
+        public Builder unidadeCombustivel(UnidadeCombustivel unidadeCombustivel) {
+            entityDto.setUnidadeCombustivel(unidadeCombustivel);
+            return this;
+        }
+
+        public Builder unidadeDistancia(Veiculo.UnidadeDistancia unidadeDistancia) {
+            entityDto.setUnidadeDistancia(unidadeDistancia);
             return this;
         }
 
@@ -191,7 +222,8 @@ public class VeiculoDto {
                     .marca(dto.getMarca())
                     .modelo(dto.getModelo())
                     .ano(Year.of(dto.getAno()))
-                    .tipoCombustível(dto.getTipoCombustivel())
+                    .emUso(dto.isEmUso())
+                    .tipoAbastecimento(dto.getTipoAbastecimento())
                     .placa(dto.getPlaca())
                     .apolice(dto.getApolice())
                     .build();
@@ -211,7 +243,8 @@ public class VeiculoDto {
                     .marca(veiculo.getMarca())
                     .modelo(veiculo.getModelo())
                     .ano(veiculo.getAno().getValue())
-                    .tipoCombustivel(veiculo.getTipoCombustivel())
+                    .emUso(veiculo.isEmUso())
+                    .tipoAbastecimento(veiculo.getTipoAbastecimento())
                     .placa(veiculo.getPlaca())
                     .apolice(veiculo.getApolice())
                     .links(getLinks(veiculo))
@@ -220,8 +253,10 @@ public class VeiculoDto {
 
         public Map<String, URI> getLinks(Veiculo veiculo) {
             Map<String, URI> links = new HashMap();
-            URI uri = UriBuilder.fromUri(Api.Veiculos.SELF).build(veiculo.getId());
-            links.put("self", uri);
+            links.put("self", UriBuilder.fromUri(Api.Veiculos.SELF).build(veiculo.getId()));
+            if (!veiculo.isEmUso()) {
+                links.put("uso", UriBuilder.fromUri(Api.Veiculos.USO).build(veiculo.getId()));
+            }
             return links;
         }
     }

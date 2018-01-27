@@ -1,0 +1,161 @@
+<div ng-init="vm.loadAll()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary pull-left" ng-click="vm.openCad()">Adicionar Veiculo</button>
+                <a href="" ng-click="vm.refresh()" class="pull-right">
+                    <i class="material-icons">refresh</i>
+                </a>
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="purple">
+                        <div>
+                            <h4 class="title">{{paginaAtiva}}</h4>
+                        </div>
+                    </div>
+                    <div class="card-content table-responsive" id="cadVeiculos" ng-if="vm.showCad">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Nome</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.nome">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Marca</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.marca">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Modelo</label>
+                                        <input type="email" class="form-control" ng-model="vm.veiculo.modelo">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Ano</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.ano">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="control-label">Tipo Abastecimento</label>
+                                    <select class="custom-select form-group label-floating" ng-model="vm.veiculo.tipoAbastecimento">
+                                        <option value="GASOLINA">Gasolina</option>
+                                        <option value="ETANOL">Etanol</option>
+                                        <option value="GNV">Gnv</option>
+                                        <option value="FLEX">Flex</option>
+                                    </select>
+                                </div>
+
+                                <!--div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Tipo Abastecimento</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.tipoAbastecimento">
+                                    </div>
+                                </div-->
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Unidade Combustível</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.unidadeCombustivel">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Unidade Distância</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.unidadeDistancia">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Placa</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.placa">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Apólice</label>
+                                        <input type="text" class="form-control" ng-model="vm.veiculo.apolice">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" ng-click="vm.salvar()" class="btn btn-primary pull-right">Salvar</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                    <div class="card-content table-responsive" id="listaVeiculos" ng-if="!vm.showCad">
+                        <div ng-if="vm.veiculos.length === 0" class="tim-typo">
+                            <h3>Ainda não existem veiculos cadastrados</h3>
+                        </div>
+                        <table ng-if="vm.veiculos.length > 0" class="table table-hover">
+                            <thead>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Marca</th>
+                                <th>Placa</th>
+                                <th>Tipo Abastecimento</th>
+                                <th> </th>
+                                <th> </th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="veiculo in vm.veiculos">
+                                    <td>{{veiculo.id}}</td>
+                                    <td>{{veiculo.nome}}</td>
+                                    <td>{{veiculo.marca}}</td>
+                                    <td>{{veiculo.placa}}</td>
+                                    <td>{{veiculo.tipoAbastecimento}}</td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" class="btn btn-primary btn-simple btn-xs" ng-click="vm.loadRow(veiculo)">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-simple btn-xs" ng-click="vm.excluir(veiculo)">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!--                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>Palio</td>
+                                                                    <td>Fiat</td>
+                                                                    <td>MJR-1536</td>
+                                                                    <td>Flex</td>
+                                                                    <td class="td-actions text-right">
+                                                                        <button type="button" rel="tooltip" title="Editar" class="btn btn-primary btn-simple btn-xs">
+                                                                            <i class="material-icons">edit</i>
+                                                                        </button>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" rel="tooltip" title="Remover" class="btn btn-danger btn-simple btn-xs">
+                                                                            <i class="material-icons">close</i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>Cerato</td>
+                                                                    <td>Kia</td>
+                                                                    <td>MHS-0625</td>
+                                                                    <td>Gasolina</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>3</td>
+                                                                    <td>Prisma</td>
+                                                                    <td>Chevrolet</td>
+                                                                    <td>MKH-7843</td>
+                                                                    <td>Flex</td>
+                                                                </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

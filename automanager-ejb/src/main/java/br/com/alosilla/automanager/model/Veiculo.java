@@ -3,6 +3,8 @@ package br.com.alosilla.automanager.model;
 import br.com.alosilla.automanager.util.AbstractBuilder;
 import br.com.alosilla.automanager.util.AbstractEntityId;
 import java.time.Year;
+import java.util.Arrays;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,7 +25,7 @@ public class Veiculo implements AbstractEntityId<Long> {
     private Long id;
 
     @Column(name = "NOME")
-    @NotNull
+    @NotNull(message = "Informe o nome do seu veículo")
     private String nome;
 
     @Column(name = "MARCA")
@@ -35,23 +37,30 @@ public class Veiculo implements AbstractEntityId<Long> {
     @Column(name = "ANO")
     private Year ano;
 
-    @Column(name = "TIPO_COMBUSTIVEL")
+    @Column(name = "TIPO_ABASTECIMENTO")
     @Enumerated(EnumType.STRING)
-    private TipoCombustivel tipoCombustivel;
+    private TipoAbastecimento tipoAbastecimento;
+
+    @Column(name = "UNIDADE_COMBUSTIVEL")
+    @Enumerated(EnumType.STRING)
+    private UnidadeCombustivel unidadeCombustivel;
+
+    @Column(name = "UNIDADE_DISTANCIA")
+    @Enumerated(EnumType.STRING)
+    private UnidadeDistancia unidadeDistancia;
 
     @Column(name = "PLACA")
     private String placa;
 
     @Column(name = "APOLICE")
     private String apolice;
+    
+    @Column(name="EM_USO")
+    private boolean emUso;
 
     @Override
     public Long getId() {
         return id;
-    }
-
-    private void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -86,14 +95,38 @@ public class Veiculo implements AbstractEntityId<Long> {
         this.ano = ano;
     }
 
-    public TipoCombustivel getTipoCombustivel() {
-        return tipoCombustivel;
+    public boolean isEmUso() {
+        return emUso;
     }
 
-    private void setTipoCombustivel(TipoCombustivel tipoCombustivel) {
-        this.tipoCombustivel = tipoCombustivel;
+    public void setEmUso(boolean emUso) {
+        this.emUso = emUso;
     }
     
+    public TipoAbastecimento getTipoAbastecimento() {
+        return tipoAbastecimento;
+    }
+
+    private void setTipoAbastecimento(TipoAbastecimento tipoAbastecimento) {
+        this.tipoAbastecimento = tipoAbastecimento;
+    }
+
+    public UnidadeCombustivel getUnidadeCombustivel() {
+        return unidadeCombustivel;
+    }
+
+    private void setUnidadeCombustivel(UnidadeCombustivel unidadeCombustivel) {
+        this.unidadeCombustivel = unidadeCombustivel;
+    }
+
+    public UnidadeDistancia getUnidadeDistancia() {
+        return unidadeDistancia;
+    }
+
+    private void setUnidadeDistancia(UnidadeDistancia unidadeDistancia) {
+        this.unidadeDistancia = unidadeDistancia;
+    }
+
     public String getPlaca() {
         return placa;
     }
@@ -110,20 +143,109 @@ public class Veiculo implements AbstractEntityId<Long> {
         this.apolice = apolice;
     }
 
-    public enum TipoCombustivel {
-        GASOLINA("G", "Gasolina", "Gasolina"),
-        ETANOL("E", "Etanol", "Etanol"),
-        DIESEL("D", "Diesel", "Diesel"),
-        GLP("P", "GPL", "Gás Liquefeito de Petróleo"),
-        GNV("V", "GNV", "Gás Natural Veicular"),
-        ELETRICO("L", "Elétrico", "Elétrico"),
-        FLEX("F", "Flex", "Flex");
+    public enum Tipo {
+        CARRO("Carro"),
+        MOTO("Moto"),
+        CAMINHAO("Caminhão");
+
+        final String descricao;
+
+        Tipo(String descricao) {
+            this.descricao = descricao;
+        }
+    }
+
+    public enum UnidadeDistancia {
+        QUILOMETROS("Quilômetros");
+
+        final String descricao;
+
+        private UnidadeDistancia(String descricao) {
+            this.descricao = descricao;
+        }
+
+        public String getDescricao() {
+            return descricao;
+        }
+    }
+
+    public enum UnidadeCombustivel {
+        LITROS("Litros"),
+        METROS_CUBICOS("Metros³");
+
+        private final String descricao;
+
+        private UnidadeCombustivel(String descricao) {
+            this.descricao = descricao;
+        }
+
+        public String getDescricao() {
+            return descricao;
+        }
+
+    }
+
+    public enum UnidadeConsumo {
+        KM_L("km/litro"),
+        L_100KM("litros/100km"),
+        KM_M3("km/metro³"),
+        M3_100KM("metros³/100km");
+
+        private final String descricao;
+
+        private UnidadeConsumo(String descricao) {
+            this.descricao = descricao;
+        }
+
+        public String getDescricao() {
+            return descricao;
+        }
+
+    }
+
+    public enum TipoAbastecimento {
+        GASOLINA("G", "Gasolina", "Gasolina") {
+            @Override
+            public List<Abastecimento.TipoCombustivel> getTiposCombustiveis() {
+                return Arrays.asList(Abastecimento.TipoCombustivel.GASOLINA);
+            }
+        },
+        ETANOL("E", "Etanol", "Etanol") {
+            @Override
+            public List<Abastecimento.TipoCombustivel> getTiposCombustiveis() {
+                return Arrays.asList(Abastecimento.TipoCombustivel.ETANOL);
+            }
+        },
+        DIESEL("D", "Diesel", "Diesel") {
+            @Override
+            public List<Abastecimento.TipoCombustivel> getTiposCombustiveis() {
+                return Arrays.asList(Abastecimento.TipoCombustivel.DIESEL);
+            }
+        },
+        GNV("V", "GNV", "Gás Natural Veicular") {
+            @Override
+            public List<Abastecimento.TipoCombustivel> getTiposCombustiveis() {
+                return Arrays.asList(Abastecimento.TipoCombustivel.GNV);
+            }
+        },
+        //        ELETRICO("L", "Elétrico", "Elétrico") {
+        //            @Override
+        //            public List<Abastecimento.TipoCombustivel> getTiposCombustiveis() {
+        //                return Arrays.asList(Abastecimento.TipoCombustivel.ELETRICIDADE);
+        //            }
+        //        },
+        FLEX("F", "Flex", "Flex") {
+            @Override
+            public List<Abastecimento.TipoCombustivel> getTiposCombustiveis() {
+                return Arrays.asList(Abastecimento.TipoCombustivel.GASOLINA, Abastecimento.TipoCombustivel.ETANOL);
+            }
+        };
 
         private final String sigla;
         private final String nome;
         private final String descricao;
 
-        TipoCombustivel(String sigla, String nome, String descricao) {
+        TipoAbastecimento(String sigla, String nome, String descricao) {
             this.sigla = sigla;
             this.nome = nome;
             this.descricao = descricao;
@@ -140,6 +262,8 @@ public class Veiculo implements AbstractEntityId<Long> {
         public String getDescricao() {
             return descricao;
         }
+
+        public abstract List<Abastecimento.TipoCombustivel> getTiposCombustiveis();
     }
 
     public static class Builder extends AbstractBuilder<Veiculo, Builder> {
@@ -175,9 +299,24 @@ public class Veiculo implements AbstractEntityId<Long> {
             entity.setAno(ano);
             return this;
         }
+        
+        public Builder emUso(final boolean emUso){
+            entity.setEmUso(emUso);
+            return this;
+        }
 
-        public Builder tipoCombustível(final TipoCombustivel tipoCombustivel) {
-            entity.setTipoCombustivel(tipoCombustivel);
+        public Builder tipoAbastecimento(final TipoAbastecimento tipoCombustivel) {
+            entity.setTipoAbastecimento(tipoCombustivel);
+            return this;
+        }
+
+        public Builder unidadeCombustivel(final UnidadeCombustivel unidadeCombustivel) {
+            entity.setUnidadeCombustivel(unidadeCombustivel);
+            return this;
+        }
+
+        public Builder unidadeDistancia(final UnidadeDistancia unidadeDistancia) {
+            entity.setUnidadeDistancia(unidadeDistancia);
             return this;
         }
 

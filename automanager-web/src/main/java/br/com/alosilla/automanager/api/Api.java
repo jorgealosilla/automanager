@@ -7,12 +7,13 @@ public class Api {
 	public static class Veiculos {
 		
 		public final static String SELF = URL_BASE + "/veiculos/{id}";
+		public final static String USO = URL_BASE + "/veiculos/usar/{id}";
 		public final static String MARCAS = URL_BASE + "/veiculos/marcas";
 		
-//		public static class Anuncio {
-//			public final static String ANUNCIOS = URL_BASE + "/usuarios/{idUsuario}/anuncios";
-//			public final static String SELF = URL_BASE + "/usuarios/{idUsuario}/anuncios/{id}";
-//		}
+		public static class Abastecimentos {
+			public final static String ABASTECIMENTOS = URL_BASE + "/veiculos/{idVeiculo}/abastecimentos";
+			public final static String SELF = URL_BASE + "/veiculos/{idVeiculo}/abastecimentos/{id}";
+		}
 //		
 //		public static class Endereco {
 //			public final static String ENDERECOS = URL_BASE + "/usuarios/{idUsuario}/enderecos";

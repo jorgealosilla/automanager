@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>Auto Manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Google Material icons-->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="container">
+        <header class="masthead">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top rounded mb-3">
+                <a class="navbar-brand" href="#">Auto manager</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav text-md-center nav-justified w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Visão Geral <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="list-abastecimentos.html">Abastecimentos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="list-despesas.html">Despesas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="list-lembretes.html">Lembrete</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="estatisticas.html">Estatísticas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="graficos.html">Gráficos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chevrolet Prisma</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item" href="list-veiculos.html">Fiat Palio</a>
+                                <a class="dropdown-item" href="list-veiculos.html">Kia Cerato</a>
+                                <a class="dropdown-item" href="list-veiculos.html">Honda Civic</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="list-veiculos.html">Gerenciar veículos</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main role="main" class="col-sm-12 ml-sm-auto col-md-12 pt-3">
+            <h3><i class="material-icons">local_gas_station</i> Abastecimentos</h3>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-primary" href="cad-abastecimentos.html">Adicionar</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Quilometragem</th>
+                                    <th>Valor</th>
+                                    <th>Litros</th>
+                                    <th>Total</th>
+                                    <th>Autonomia</th>
+                                    <th>Consumo</th>
+                                    <th>Local</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>20/07/2017</td>
+                                    <td>63618</td>
+                                    <td>R$3.939</td>
+                                    <td>36,87 L</td>
+                                    <td>R$129,41</td>
+                                    <td>363 km</td>
+                                    <td>10,4 km/l</td>
+                                    <td>Posto Petrobras</td>
+                                    <td class="text-right">
+                                        <a href="#">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10/06/2017</td>
+                                    <td>63255</td>
+                                    <td>R$3.439</td>
+                                    <td>20,31 L</td>
+                                    <td>R$69,66</td>
+                                    <td>234 km</td>
+                                    <td>11,4 km/l</td>
+                                    <td>Posto Shell</td>
+                                    <td class="text-right">
+                                        <a href="#">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>09/06/2017</td>
+                                    <td>63021</td>
+                                    <td>R$3.619</td>
+                                    <td>16 L</td>
+                                    <td>R$57,79</td>
+                                    <td>173 km</td>
+                                    <td>10,8 km/l</td>
+                                    <td>Posto Petrobras</td>
+                                    <td class="text-right">
+                                        <a href="#">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>03/05/2017</td>
+                                    <td>62848</td>
+                                    <td>R$3.629</td>
+                                    <td>15 L</td>
+                                    <td>R$56,29</td>
+                                    <td>233 km</td>
+                                    <td>10,4 km/l</td>
+                                    <td>Posto Ipiranga</td>
+                                    <td class="text-right">
+                                        <a href="#">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
