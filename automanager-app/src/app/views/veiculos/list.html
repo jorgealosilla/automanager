@@ -1,0 +1,50 @@
+<main role="main" class="col-sm-12 ml-sm-auto col-md-12 pt-3">
+    <h3><i class="material-icons">directions_car</i> Veiculos</h3>
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-primary" ui-sref="veiculo.new">Adicionar</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Marca</th>
+                            <th>Nome</th>
+                            <th>Ano</th>
+                            <th>Placa</th>
+                            <th>Tipo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in vm.records | orderBy: 'id'">
+                            <th scope="row">{{rec.id}}</th>
+                            <td>{{rec.marca}}</td>
+                            <td>{{rec.nome}}</td>
+                            <td>{{rec.ano}}</td>
+                            <td>{{rec.placa}}</td>
+                            <td>{{rec.tipoAbastecimento}}</td>
+                            <td class="text-right">
+                                <a href="javascript:void()">
+                                    <i ng-show="{{rec.emUso}}" class="material-icons">check_box</i>
+                                </a>
+                                <a href="javascript:void()" ng-click="vm.usar(rec.id)">
+                                    <i ng-show="{{!rec.emUso}}" class="material-icons">check_box_outline_blank</i>
+                                </a>
+                                <a ui-sref="veiculo.edit({id: rec.id})">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+                                <a href="javascript:void()" ng-click="vm.excluir(rec.id)">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<ui-view></ui-view>

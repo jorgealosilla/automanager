@@ -1,0 +1,86 @@
+<ui-view></ui-view>
+<main role="main" class="col-sm-12 ml-sm-auto col-md-12 pt-3">
+    <h3><i class="material-icons">local_gas_station</i> {{vm.veiculoContext.nome}} > Estatísticas</h3>
+    <div class="card">
+        <div class="card-header">
+            <span>Ultimo Abastecimento</span>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">local_gas_station</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Quantidade</p>
+                                <h3 class="title">{{vm.ultimoAbastecimento.quantidade}}
+                                    <small>L</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> {{vm.ultimoAbastecimento.tipoCombustivel}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="green">
+                                <i class="material-icons">attach_money</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Valor</p>
+                                <h3 class="title">{{vm.ultimoAbastecimento.valorUnitario}}
+                                    <small>R$</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> {{vm.ultimoAbastecimento.data | date: 'dd/MM/yyyy'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="orange">
+                                <i class="material-icons">attach_money</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total</p>
+                                <h3 class="title">{{vm.ultimoAbastecimento.valorTotal}}
+                                    <small>R$</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> 07/10/2017
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">opacity</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Odômetro</p>
+                                <h3 class="title">{{vm.ultimoAbastecimento.quilometro}}
+                                    <small>Km</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> 23.231 Km
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>

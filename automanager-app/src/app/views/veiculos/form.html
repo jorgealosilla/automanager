@@ -1,0 +1,50 @@
+<main role="main" class="col-sm-12 ml-sm-auto col-md-12 pt-3">
+    <h3><i class="material-icons">directions_car</i> Veiculos</h3>
+    <div class="card">
+        <div class="card-header">
+            <span>{{vm.titulo}}</span>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputMarca">Marca</label>
+                        <input type="text" ng-model="vm.record.marca" class="form-control" id="inputMarca" placeholder="Marca" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid state.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputNome">Nome</label>
+                        <input type="text" ng-model="vm.record.nome" class="form-control" id="inputNome" placeholder="Nome" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputAno">Ano</label>
+                        <input type="text" ng-model="vm.record.ano" class="form-control" id="inputAno" placeholder="Ano">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputPlaca">Placa</label>
+                        <input type="text" ng-model="vm.record.placa" class="form-control" id="inputPlaca" placeholder="Placa">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputAbastecimento">Abastecimento</label>
+                        <select ng-model="vm.record.tipoAbastecimento" id="inpuTipoAbastecimento" class="form-control">
+                                      <option selected value="FLEX">Flex</option>
+                                      <option selected value="DIESEL">Diesel</option>
+                                      <option value="ETANOL">Etanol</option>
+                                      <option value="GASOLINA">Gasolina</option>
+                                      <option value="GNV">Gnv</option>
+                                    </select>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <a class="btn btn-primary" href="javascript:void()" ng-click="vm.salvar()">Salvar</a>
+                    <a class="btn btn-primary" ui-sref="veiculo.list">Cancelar</a>
+                    <!--a class="btn btn-primary" href="javascript:void()">Excluir</a-->
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

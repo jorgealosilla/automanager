@@ -1,0 +1,44 @@
+<main role="main" class="col-sm-12 ml-sm-auto col-md-12 pt-3">
+    <h3><i class="material-icons">attach_money</i> Despesas</h3>
+    <div class="card">
+        <div class="card-header">
+            <span>Cadastrando</span>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputData">Data</label>
+                        <input type="date" class="form-control" id="inputData">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputTipo">Tipo</label>
+                        <select id="inputTipo" class="form-control">
+                                      <option selected>Manutenção</option>
+                                      <option>Lavação</option>
+                                      <option>Pedágio</option>
+                                      <option>Estacionamento</option>
+                                    </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputValor">Valor</label>
+                        <input type="text" class="form-control" id="inputValor" placeholder="Valor">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputDescricao">Descrição</label>
+                        <input type="text" class="form-control" id="inputDescricao" placeholder="descrição">
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Cancelar</button>
+                    <!--button type="submit" class="btn btn-primary text-right">Excluir</button-->
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</main>

@@ -1,0 +1,43 @@
+<main role="main" class="col-sm-12 ml-sm-auto col-md-12 pt-3">
+    <h3><i class="material-icons">local_gas_station</i> {{vm.veiculoContext.nome}} > Abastecimentos</h3>
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-primary" ui-sref="abastecimento.new">Adicionar</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Data</th>
+                            <th>Quilometragem</th>
+                            <th>Valor</th>
+                            <th>Litros</th>
+                            <th>Tipo Combustível</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="rec in vm.records | orderBy: 'quilometro' : true">
+                        <th scope="row">{{rec.id}}</th>
+                        <td>{{rec.data | date: 'yyyy-MM-dd'}}</td>
+                        <td>{{rec.quilometro}}</td>
+                        <td>{{rec.valorUnitario}}</td>
+                        <td>{{rec.quantidade}}</td>
+                        <td>{{rec.tipoCombustivel}}</td>
+                        <td>{{rec.valorTotal}}</td>
+                        <td class="text-right">
+                            <a ui-sref="abastecimento.edit({id: rec.id})">
+                                <i class="material-icons">mode_edit</i>
+                            </a>
+                            <a href="javascript:void()" ng-click="vm.excluir(rec.id)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
